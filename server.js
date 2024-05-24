@@ -1,5 +1,5 @@
 import { createRequestHandler } from "@remix-run/express"
-import express, { Express } from "express"
+import express from "express"
 
 const viteDevServer =
   process.env.NODE_ENV === "production"
@@ -10,7 +10,7 @@ const viteDevServer =
         })
       )
 
-const app: Express = express()
+const app = express()
 
 app.use(
   viteDevServer
@@ -27,7 +27,7 @@ const build = viteDevServer
 
 app.use(express.static("build/client"))
 
-app.all("*", createRequestHandler({ build: build as any }))
+app.all("*", createRequestHandler({ build }))
 
 app.listen(1008, () => {
   console.log("App listening on http://localhost:1008")

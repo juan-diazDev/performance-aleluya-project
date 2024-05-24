@@ -3,27 +3,25 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
-} from "@remix-run/react"
+} from "@remix-run/react";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export default function App() {
   return (
-    <html lang="en">
+    <html>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="icon"
+          href="data:image/x-icon;base64,AA"
+        />
         <Meta />
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
+        <h1>Hello world!</h1>
+        <Outlet />
+
         <Scripts />
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }
