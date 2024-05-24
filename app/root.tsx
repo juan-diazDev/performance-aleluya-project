@@ -1,27 +1,36 @@
+import type { LinksFunction } from "@remix-run/node"
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
-} from "@remix-run/react";
+  ScrollRestoration,
+} from "@remix-run/react"
 
-export default function App() {
+import styles from "./styles/tailwind.css?url"
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+];
+
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html lang="en">
       <head>
-        <link
-          rel="icon"
-          href="data:image/x-icon;base64,AA"
-        />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <h1>Hello world!</h1>
-        <Outlet />
-
+        {children}
+        <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />
 }
