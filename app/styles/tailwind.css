@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-aria-TextField {
+  [slot=description] {
+    font-size: 12px;
+  }
+}
