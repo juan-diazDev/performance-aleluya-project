@@ -1,5 +1,4 @@
-import type { LinksFunction } from "@remix-run/node"
-import { RouterProvider } from 'react-aria-components'
+import type { LinksFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -7,14 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
   useNavigate,
-} from "@remix-run/react"
+} from '@remix-run/react';
+import { RouterProvider } from 'react-aria-components';
 
-import styles from "./styles/tailwind.css?url"
+import styles from './styles/tailwind.css?url';
 
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -31,15 +28,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
 
 export default function App() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <RouterProvider navigate={navigate}>
       <Outlet />
     </RouterProvider>
-  )
+  );
 }

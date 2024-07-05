@@ -12,6 +12,5 @@ const sqlite = new Database(__dirname + '/data.db');
 const db = drizzle(sqlite, { schema });
 
 migrate(db, { migrationsFolder: 'drizzle' });
-sqlite.close();
 
-console.log("dirname", __dirname + "/drizzle")
+console.log('dirname', __dirname + '/drizzle');
