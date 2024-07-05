@@ -1,26 +1,35 @@
 {
   "name": "performance-aleluya-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "sideEffects": false,
   "scripts": {
     "dev": "node ./server.js",
     "start": "cross-env NODE_ENV=production node ./server.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "drope": "drizzle-kit drop"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
+    "@prisma/client": "^5.16.1",
     "@remix-run/express": "^2.9.2",
     "@remix-run/node": "^2.9.2",
     "@remix-run/react": "^2.9.2",
+    "@types/uuid": "^10.0.0",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.1.2",
     "cross-env": "^7.0.3",
     "cva": "^1.0.0-beta.1",
+    "drizzle-orm": "^0.31.2",
     "express": "^4.19.2",
     "isbot": "^4.4.0",
     "lucide-react": "^0.379.0",
+    "prettier": "3.2.5",
+    "prettier-plugin-tailwindcss": "0.6.5",
     "react": "^18.3.1",
     "react-aria-components": "^1.0.0",
     "react-dom": "^18.3.1",
@@ -29,14 +38,27 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-react-aria-components": "^1.0.0",
+    "uuid": "^10.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.9.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "7.6.10",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "6.7.4",
+    "@typescript-eslint/parser": "6.7.4",
+    "drizzle-kit": "^0.22.8",
+    "eslint": "8.38.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "prisma": "^5.16.1",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
@@ -44,6 +66,12 @@
   },
   "engines": {
     "node": "20.13.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --max-warnings=0 --no-warn-ignored"
+    ]
   },
   "type": "module"
 }

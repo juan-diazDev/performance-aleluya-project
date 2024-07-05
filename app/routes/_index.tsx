@@ -1,9 +1,5 @@
-import React from 'react'
+import { redirect } from '@remix-run/node';
 
-const _index = () => {
-  return (
-    <div>_index</div>
-  )
+export function loader() {
+  return redirect('/login');
 }
-
-export default _index
