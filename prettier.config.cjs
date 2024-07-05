@@ -11,7 +11,14 @@ module.exports = {
   bracketSpacing: true,
   arrowParens: 'always',
   endOfLine: 'auto',
-  importOrder: ['^@remix/(.*)$', '^[~/]', '^/images/(.*)$', '^[../]', '^[./]'],
+  importOrder: [
+    '^@remix/(.*)$',
+    '^remix/(.*)$',
+    '^[~/]',
+    '^/images/(.*)$',
+    '^[../]',
+    '^[./]',
+  ],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
 };

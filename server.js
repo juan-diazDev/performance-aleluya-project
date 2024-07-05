@@ -2,7 +2,7 @@ import { createRequestHandler } from "@remix-run/express"
 import express from "express"
 
 const viteDevServer =
-  import.meta.env.NODE_ENV === "production"
+  process.NODE_ENV === "production"
     ? null
     : await import("vite").then((vite) =>
         vite.createServer({
@@ -29,7 +29,7 @@ app.use(express.static("build/client"))
 
 app.all("*", createRequestHandler({ build }))
 
-const port = import.meta.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(1008, () => {
   console.log(`App listening on http://localhost:${port}`)

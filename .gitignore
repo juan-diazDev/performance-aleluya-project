@@ -4,6 +4,3 @@ node_modules
 /build
 /public/build
 .env
-
-/db/drizzle
-/db/data.db

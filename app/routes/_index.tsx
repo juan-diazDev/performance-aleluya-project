@@ -1,5 +1,8 @@
-import { redirect } from '@remix-run/node';
+import { LoaderFunctionArgs } from '@remix-run/node';
+import { requireUser } from '~/utils/auth.service';
 
-export function loader() {
-  return redirect('/login');
+export async function loader({ request }: LoaderFunctionArgs) {
+  await requireUser(request);
+
+  return null;
 }

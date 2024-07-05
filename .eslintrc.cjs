@@ -13,6 +13,9 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
+  globals: {
+    process: 'readonly',
+  },
   ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config

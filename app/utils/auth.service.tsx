@@ -1,10 +1,21 @@
-import { getSession } from "~/session";
-import bcryptjs from "bcryptjs";
+import { redirect } from '@remix-run/node';
+import bcryptjs from 'bcryptjs';
+
+import { destroySession, getSession } from '~/session';
 
 export async function requireUser(request: Request) {
-  const session = await getSession(request.headers.get("cookie"));
+  const session = await getSession(request.headers.get('cookie'));
+  const user = session.get('userId');
 
-  return session
+  if (!user) {
+    throw redirect('/login', {
+      headers: {
+        'set-cookie': await destroySession(session),
+      },
+    });
+  }
+
+  return user as User;
 }
 
 export const hashPassword = async (password: string) => {

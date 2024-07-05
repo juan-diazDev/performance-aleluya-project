@@ -1,5 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  ActionFunctionArgs,
+  json,
+  LoaderFunctionArgs,
+  MetaFunction,
+  redirect,
+} from '@remix-run/node';
 import { Form, Link } from '@remix-run/react';
+import { getValidatedFormData } from 'remix-hook-form';
+
 import {
   Button,
   FieldError,
@@ -8,6 +17,13 @@ import {
   TextField,
 } from 'react-aria-components';
 import { z } from 'zod';
+import { db } from "~/db/instance";
+
+import { commitSession, getSession } from '~/session';
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Iniciar sesión' }];
+};
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -16,6 +32,43 @@ const LoginSchema = z.object({
 
 type FormData = z.infer<typeof LoginSchema>;
 const resolver = zodResolver(LoginSchema);
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const session = await getSession(request.headers.get('Cookie'));
+
+  if (session.has('userId')) {
+    return redirect('/dashboard');
+  }
+
+  const data = { error: session.get('error') };
+
+  return json(data, {
+    headers: {
+      'Set-Cookie': await commitSession(session),
+    },
+  });
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  const {
+    errors,
+    data,
+    receivedValues,
+  } = await getValidatedFormData<FormData>(request, resolver);
+
+  if (errors) {
+    return json({ errors, receivedValues });
+  }
+
+  const session = await getSession(request.headers.get('Cookie'));
+
+  const user = await db.query.User.findFirst({
+    where: eq(User.email, data.email),
+    with: {
+      password: true,
+    },
+  });
+}
 
 export default function LogIn() {
   return (
