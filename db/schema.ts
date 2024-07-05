@@ -6,8 +6,11 @@ export const User = sqliteTable('User', {
   id: text('id')
     .$defaultFn(() => uuidv4())
     .primaryKey(),
-  name: text('name'),
-  email: text('email').unique(),
-  createdAt: text('createdAt').default(sql`(CURRENT_TIMESTAMP)`),
-  updatedAt: text('updatedAt').default(sql`(CURRENT_TIMESTAMP)`),
+  name: text('name').notNull(),
+  email: text('email').unique().notNull(),
+  hashed_password: text('hashed_password').notNull(),
+  created_at: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
+  updated_at: text('updated_at').default(sql`(CURRENT_TIMESTAMP)`),
 });
+
+export type User = typeof User.$inferSelect;

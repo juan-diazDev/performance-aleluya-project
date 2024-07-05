@@ -14,6 +14,7 @@ module.exports = {
   importOrder: [
     '^@remix/(.*)$',
     '^remix/(.*)$',
+    '^@hookform/(.*)$',
     '^[~/]',
     '^/images/(.*)$',
     '^[../]',
