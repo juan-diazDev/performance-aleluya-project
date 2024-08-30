@@ -1,6 +1,7 @@
 import { useLocation, Form } from '@remix-run/react';
 
 import { Button } from 'react-aria-components';
+
 import { breadcrumbsLabel } from './helpers';
 
 type BreadcrumbKey = keyof typeof breadcrumbsLabel;
@@ -15,22 +16,20 @@ function Appbar() {
   };
 
   return (
-    <div className="top-0 left-0 w-full shadow-lg min-h-20">
-      <div className="flex items-center justify-between px-12 py-2">
-        <section className="text-xl">{getBreadcrumb(breadcrumbName)}</section>
-        <section>
-          <Form method="POST" action="/logout">
-            <span>
-              <Button
-                type="submit"
-                className="border-2 border-cyan-500 w-[90%] text-lg py-2 rounded-3xl text-white bg-cyan-500 hover:opacity-70"
-              >
-                Log Out
-              </Button>
-            </span>
-          </Form>
-        </section>
-      </div>
+    <div className="flex items-center justify-between px-12 py-2 w-full shadow-lg min-h-20">
+      <section className="text-xl">{getBreadcrumb(breadcrumbName)}</section>
+      <section className="w-[30%]">
+        <Form method="POST" action="/logout">
+          <span>
+            <Button
+              type="submit"
+              className="border-2 border-cyan-500 w-[90%] text-sm py-2 rounded-3xl text-white bg-cyan-500 hover:opacity-70"
+            >
+              Log Out
+            </Button>
+          </span>
+        </Form>
+      </section>
     </div>
   );
 }

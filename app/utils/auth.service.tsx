@@ -41,7 +41,7 @@ export async function requireUser(request: Request) {
     });
   }
 
-  if (session.get('user')) {
+  if (user) {
     throw redirect('/dashboard');
   }
 
