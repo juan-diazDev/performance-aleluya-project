@@ -54,7 +54,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'));
 
   const user = await db.query.User.findFirst({
-    where: eq(User.email, data.email),
+    where: eq(User?.email, data.email),
   });
 
   if (!user) {
