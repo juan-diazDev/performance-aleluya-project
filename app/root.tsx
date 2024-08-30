@@ -10,11 +10,10 @@ import {
 import { RouterProvider } from 'react-aria-components';
 
 import styles from './styles/tailwind.css?url';
-import favico from '../public/fav.ico';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
-  { rel: 'icon', href: favico },
+  { rel: 'icon', href: '/fav.ico?url' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

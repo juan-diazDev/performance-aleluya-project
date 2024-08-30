@@ -10,4 +10,4 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const sqlite = new Database(__dirname + '/data.db');
 const db = drizzle(sqlite, { schema });
 
-export { db }
+export { db };
