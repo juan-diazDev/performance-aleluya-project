@@ -12,7 +12,10 @@ function Sidebar() {
         </figure>
         <div className="flex flex-col gap-8 text-2xl pl-2">
           {adminOptions.map((option) => (
-            <Link key={option.id} to={option.route}>
+            <Link
+              key={option.id}
+              to={option.route}
+            >
               {option.label}
             </Link>
           ))}
