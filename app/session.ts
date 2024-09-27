@@ -6,8 +6,7 @@ const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
     cookie: {
       name: SESSION_COOKIE_NAME,
-      expires: new Date(Date.now() + 120_000),
-      maxAge: 120,
+      maxAge: 3600,
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
